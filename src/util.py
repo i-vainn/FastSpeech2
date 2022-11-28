@@ -10,7 +10,7 @@ import numpy as np
 from tqdm import tqdm
 from torch.utils.data import Dataset
 from urllib.parse import urlencode
-from text import text_to_sequence
+from .text import text_to_sequence
 
 from .configs import TrainConfig
 from .configs import MelSpectrogramConfig

@@ -158,6 +158,8 @@ class VarianceAdaptor(nn.Module):
         pitch_target=None,
         energy_target=None,
         alpha=1.0,
+        palpha=1.0,
+        ealpha=1.0,
     ):
         duration_prediction = None
         mel_pos = None
@@ -183,6 +185,6 @@ class VarianceAdaptor(nn.Module):
             length_regulator_output,
             mel_pos,
             duration_prediction,
-            energy_prediction,
-            pitch_prediction,
+            energy_prediction * ealpha,
+            pitch_prediction * palpha,
         )
