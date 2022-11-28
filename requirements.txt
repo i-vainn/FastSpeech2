@@ -1,0 +1,9 @@
+tqdm
+requests
+numpy
+torch
+torchaudio
+wandb
+gdown==4.5.4
+unidecode
+pyworld

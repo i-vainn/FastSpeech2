@@ -3,9 +3,9 @@ from torch import nn
 
 from .adaptors import VarianceAdaptor
 from .modules import FFTBlock
-from .utils import get_mask_from_lengths
-from .utils import get_attn_key_pad_mask
-from .utils import get_non_pad_mask
+from .util import get_mask_from_lengths
+from .util import get_attn_key_pad_mask
+from .util import get_non_pad_mask
 
 class FastSpeech(nn.Module):
     """ FastSpeech """
