@@ -10,7 +10,6 @@ import numpy as np
 from tqdm import tqdm
 from torch.utils.data import Dataset
 from urllib.parse import urlencode
-from .text import text_to_sequence
 
 from .configs import TrainConfig
 from .configs import MelSpectrogramConfig
@@ -93,6 +92,7 @@ def process_text(train_text_path):
 
 
 def get_data_to_buffer(train_config, mel_config=MelSpectrogramConfig()):
+    from .text import text_to_sequence
     stft = lambda wav: torch.stft(
         wav,
         mel_config.filter_length,

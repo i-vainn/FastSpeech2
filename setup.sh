@@ -5,6 +5,7 @@ mkdir -p waveglow/pretrained_model/
 mv waveglow_256channels_ljs_v2.pt waveglow/pretrained_model/waveglow_256channels.pt
 
 git clone https://github.com/xcmyz/FastSpeech.git
+mv FastSpeech/text src/
 mv FastSpeech/audio src/
 mv FastSpeech/waveglow/* src/waveglow/
 mv FastSpeech/utils.py src/
