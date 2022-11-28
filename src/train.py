@@ -7,6 +7,7 @@ from tqdm import tqdm
 
 
 def train(model, fastspeech_loss, optimizer, scheduler, logger, training_loader, train_config):
+    current_step = 0
     tqdm_bar = tqdm(total=train_config.epochs * len(training_loader) * train_config.batch_expand_size - current_step)
 
     for epoch in range(train_config.epochs):

@@ -5,6 +5,7 @@ import torchaudio
 import time
 import os
 import requests
+import random
 import numpy as np
 
 from tqdm import tqdm
@@ -258,3 +259,13 @@ def download_buffer(url='https://disk.yandex.ru/d/ogJiwlcbbSe9ng'):
     download_response = requests.get(download_url)
     with open('saved_buffer.pkl', 'wb') as f:
         f.write(download_response.content)
+
+
+def seed_everything(seed: int):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = True

@@ -37,6 +37,8 @@ class FastSpeech(nn.Module):
         energy_target=None,
         pitch_target=None,
         alpha=1.0,
+        ealpha=1.0,
+        palpha=1.0,
     ):
         encoder_output, _ = self.encoder(src_seq, src_pos)
 
@@ -54,6 +56,8 @@ class FastSpeech(nn.Module):
             pitch_target=pitch_target,
             energy_target=energy_target,
             speaker_id=speaker_id,
+            ealpha=ealpha,
+            palpha=palpha,
         )
 
         if self.training:
