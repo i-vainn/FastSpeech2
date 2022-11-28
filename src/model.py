@@ -100,6 +100,7 @@ class Encoder(nn.Module):
             model_config.encoder_head,
             model_config.encoder_dim // model_config.encoder_head,
             model_config.encoder_dim // model_config.encoder_head,
+            model_config,
             dropout=model_config.dropout
         ) for _ in range(n_layers)])
 
@@ -149,6 +150,7 @@ class Decoder(nn.Module):
             model_config.encoder_head,
             model_config.encoder_dim // model_config.encoder_head,
             model_config.encoder_dim // model_config.encoder_head,
+            model_config,
             dropout=model_config.dropout
         ) for _ in range(n_layers)])
 

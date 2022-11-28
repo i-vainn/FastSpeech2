@@ -125,12 +125,13 @@ class FFTBlock(torch.nn.Module):
                  n_head,
                  d_k,
                  d_v,
+                 model_config,
                  dropout=0.1):
         super(FFTBlock, self).__init__()
         self.slf_attn = MultiHeadAttention(
             n_head, d_model, d_k, d_v, dropout=dropout)
         self.pos_ffn = PositionwiseFeedForward(
-            d_model, d_inner, dropout=dropout)
+            d_model, d_inner, model_config, dropout=dropout)
 
     def forward(self, enc_input, non_pad_mask=None, slf_attn_mask=None):
         enc_output, enc_slf_attn = self.slf_attn(
