@@ -133,16 +133,16 @@ class VarianceAdaptor(nn.Module):
             requires_grad=False,
         )
 
-    def embed_pitch(self, x, target):
-        pred = self.pitch_predictor(x)
+    def embed_pitch(self, x, target, palpha):
+        pred = self.pitch_predictor(x) * palpha
         if target is not None:
             embedding = self.pitch_embeds(torch.bucketize(target, self.pitch_bins))
         else:
             embedding = self.pitch_embeds(torch.bucketize(pred, self.pitch_bins))
         return pred, embedding
 
-    def embed_energy(self, x, target):
-        pred = self.energy_predictor(x)
+    def embed_energy(self, x, target, ealpha):
+        pred = self.energy_predictor(x) * ealpha
         if target is not None:
             embedding = self.energy_embeds(torch.bucketize(target, self.energy_bins))
         else:
@@ -172,10 +172,10 @@ class VarianceAdaptor(nn.Module):
             length_regulator_output, mel_pos = self.length_regulator(encoder_output, alpha=alpha)
         
         energy_prediction, energy_embedding = self.embed_energy(
-            length_regulator_output, energy_target
+            length_regulator_output, energy_target, ealpha
         )
         pitch_prediction, pitch_embedding = self.embed_pitch(
-            length_regulator_output, pitch_target
+            length_regulator_output, pitch_target, palpha
         )
         speaker_embed = self.speaker_embeds(speaker_id).unsqueeze(1).expand(pitch_embedding.size())
 
